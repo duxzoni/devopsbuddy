@@ -4,6 +4,7 @@ import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -47,7 +48,7 @@ public class User implements Serializable {
     private Plan plan;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private Set<UserRole> userRole;
+    private Set<UserRole> userRole = new HashSet<>();
 
     public long getId() {
         return id;
@@ -145,7 +146,7 @@ public class User implements Serializable {
         this.plan = plan;
     }
 
-    public Set<UserRole> getUserRole() {
+    public Set<UserRole> getUserRoles() {
         return userRole;
     }
 
